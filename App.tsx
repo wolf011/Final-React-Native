@@ -1,20 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Home from './src/screens/Home';
+import { Feather } from '@expo/vector-icons';
+import Favorites from './src/screens/Favorites';
+import Categories from './src/screens/Categories';
+import Login from './src/screens/Login';
+import Subscription from './src/screens/Subscription';
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator  screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "blue",
+          tabBarInactiveTintColor: "gray",
+          tabBarActiveBackgroundColor: "white",
+          tabBarShowLabel: false
+        }}>
+
+          <Tab.Screen name='Home' component={Home} options={{
+            tabBarIcon: ({color, size}) => {
+              return (<Feather name='home' color={color} size={size}/>)
+            }
+          }}/>
+
+          <Tab.Screen name='Favorites' component={Favorites} options={{
+            tabBarIcon: ({color, size}) => {
+              return (<Feather name='star' color={color} size={size}/>)
+            }
+          }}/>
+
+          <Tab.Screen name='Categories' component={Categories} options={{
+            tabBarIcon: ({color, size}) => {
+              return (<Feather name='film' color={color} size={size}/>)
+            }
+          }}/>
+
+          <Tab.Screen name='Login' component={Login} options={{
+            tabBarIcon: ({color, size}) => {
+              return (<Feather name='user' color={color} size={size}/>)
+            }
+          }}/>
+
+          <Tab.Screen name='Subscription' component={Subscription} options={{
+            tabBarIcon: ({color, size}) => {
+              return (<Feather name='log-in' color={color} size={size}/>)
+            }
+          }}/>
+
+        </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
