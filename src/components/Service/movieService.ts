@@ -10,4 +10,13 @@ async function getMovie() {
     }
 }
 
-export default {getMovie};
+async function getMovieNowPaying() {
+    try {
+        return await api.get(`movie/now_playing`)
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export default {getMovie, getMovieNowPaying};
