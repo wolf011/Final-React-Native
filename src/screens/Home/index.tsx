@@ -3,16 +3,16 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import movieService from '../../components/Service/movieService';
-import IMovie from '../../components/Models/IMovie';
+import listaFilmes from '../../components/Models/listaFilmes';
 
 
 export default function Home() {
-  const [movies, setMovies] = useState<IMovie | []>([])
+  const [movies, setMovies] = useState<listaFilmes | []>([])
 
   const listar = async () => {
       const response: any = await movieService.getMovie();
       setMovies(response.data.results)
-      console.log(response.data.original_title);
+      console.log(movies);
   }
   
   

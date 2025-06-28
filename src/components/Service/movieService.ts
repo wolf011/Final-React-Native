@@ -3,11 +3,10 @@ import api from "../Api/api";
 
 async function getMovie() {
     try {
-        return await api.get(`/movie/12`, {headers: {Token: ""}})
+        return await api.get(`/discover/movie`)
 
     } catch (error) {
         console.error(error);
-
     }
 }
 
