@@ -3,15 +3,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './src/screens/Home';
 import { Feather } from '@expo/vector-icons';
 import Favorites from './src/screens/Favorites';
-import Categories from './src/screens/Categories';
 import Login from './src/screens/Login';
 import Subscription from './src/screens/Subscription';
+import { StatusBar } from 'react-native';
+import Pesquisa from './src/screens/Pequisa';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar barStyle={'default'}/>
       <Tab.Navigator  screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: "blue",
@@ -32,9 +34,9 @@ export default function App() {
             }
           }}/>
 
-          <Tab.Screen name='Categories' component={Categories} options={{
+          <Tab.Screen name='Pesquisa' component={Pesquisa} options={{
             tabBarIcon: ({color, size}) => {
-              return (<Feather name='film' color={color} size={size}/>)
+              return (<Feather name='search' color={color} size={size}/>)
             }
           }}/>
 
