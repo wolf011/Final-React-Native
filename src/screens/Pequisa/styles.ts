@@ -45,13 +45,26 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
-  botao: {
+  botao1: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 8,
     marginBottom: 20,
     alignItems: "center"
+  },
+  botao2: {
+    backgroundColor: 'rgb(255, 0, 0)',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    marginBottom: 20,
+    alignItems: "center"
+  },
+  botoes: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between"
   },
   botaoTexto: {
     color: '#fff',
