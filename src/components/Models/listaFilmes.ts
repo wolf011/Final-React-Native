@@ -1,11 +1,11 @@
 export default interface listaFilmes {
   page: number;
-  results: MovieSummary[];
+  results: infosFilme[];
   total_pages: number;
   total_results: number;
 }
 
-export interface MovieSummary {
+export interface infosFilme {
 //   adult: boolean;
 //   backdrop_path: string | null;
 //   genre_ids: number[];
@@ -18,6 +18,6 @@ export interface MovieSummary {
   release_date: string;
   title: string;
 //   video: boolean;
-//   vote_average: number;
-//   vote_count: number;
+  vote_average: number;
+  // vote_count: number;
 }
