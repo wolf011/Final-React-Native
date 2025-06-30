@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   },
   botaoTexto: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   modalBackground: {
     flex: 1,

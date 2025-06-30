@@ -21,13 +21,13 @@ export default function Pesquisa() {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} onChangeText={setNome} placeholder='Nome do filme' />
+      <TextInput value={nome ?? ""} style={styles.input} onChangeText={setNome} placeholder='Nome do filme' />
 
       <View style={styles.botoes}>
 
         <TouchableOpacity style={styles.botao1} onPress={listar}>
           <Text style={styles.botaoTexto}>Pesquisar</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>j
 
         <TouchableOpacity style={styles.botao2} onPress={apagar}>
           <Text style={styles.botaoTexto}>Apagar</Text>
@@ -66,7 +66,7 @@ export default function Pesquisa() {
                   <View style={styles.modalContent}>
                     <Text style={styles.modalText}>{item.overview}</Text>
 
-                    <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(null)}>
+                    <TouchableOpacity style={styles.botao2} onPress={() => setModalIdVisivel(null)}>
                       <Text style={styles.botaoTexto}>Fechar</Text>
                     </TouchableOpacity>
 
