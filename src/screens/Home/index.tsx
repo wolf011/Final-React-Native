@@ -1,26 +1,18 @@
 
-import { View, Text, FlatList, StatusBar } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import movieService from '../../components/Service/movieService';
-import listaFilmes, { MovieSummary } from '../../components/Models/listaFilmes';
+import { infosFilme } from '../../components/Models/listaFilmes';
 
 
 export default function Home() {
-  const [movies, setMovies] = useState<listaFilmes | []>([])
-  const [moviesPlaying, setMoviesPlaying] = useState<MovieSummary[]>([])
-
-  const listar = async () => {
-    const response: any = await movieService.getMovie();
-    setMovies(response.data.results)
-    console.log(movies);
-  }
+  const [filmesMomento, setFilmesMomento] = useState<infosFilme[]>([])
 
   const listarLancamentos = async () => {
-    const response: any = await movieService.getMovieNowPaying();
-    setMoviesPlaying(response.data.results)
-    console.log(moviesPlaying);
-
+    const response: any = await movieService.getFilmesDoMomento();
+    setFilmesMomento(response.data.results)
+    console.log(filmesMomento);
 
   }
 
@@ -29,16 +21,12 @@ export default function Home() {
   }, [])
 
 
-  useEffect(() => {
-    listar();
-  }, []);
-
   return (
 
     <View style={styles.container}>
       <Text>Home</Text>
       <FlatList
-        data={moviesPlaying}
+        data={filmesMomento}
         horizontal
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
@@ -51,13 +39,17 @@ export default function Home() {
               borderRadius: 12,
               justifyContent: 'center',
               alignItems: 'center',
-              shadowColor: '#000',
+              shadowColor: 'rgba(255, 255, 255, 1)',
               shadowOffset: { width: 0, height: 2 },
               shadowOpacity: 0.2,
               shadowRadius: 3,
               elevation: 3,
             }}
           >
+            <Image
+              source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }}
+              style={styles.poster}
+            />
             <Text
               style={{
                 fontSize: 16,
@@ -65,7 +57,7 @@ export default function Home() {
                 color: '#333',
                 textAlign: 'center',
               }}
-              
+
             >
               {item.title}
             </Text>
