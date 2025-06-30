@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import api from "../Api/api";
 
 async function getMovie() {

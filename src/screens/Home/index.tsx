@@ -13,13 +13,13 @@ export default function Home() {
   const listar = async () => {
     const response: any = await movieService.getMovie();
     setMovies(response.data.results)
-    console.log(movies);
+    //console.log(movies);
   }
 
   const listarLancamentos = async () => {
     const response: any = await movieService.getMovieNowPaying();
     setMoviesPlaying(response.data.results)
-    console.log(moviesPlaying);
+    //console.log(moviesPlaying);
 
 
   }
@@ -36,6 +36,7 @@ export default function Home() {
   return (
 
     <View style={styles.container}>
+      <StatusBar/>
       <Text>Home</Text>
       <FlatList
         data={moviesPlaying}
