@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import movieService from '../../components/Service/movieService'
-import { infosFilme } from '../../components/Models/listaFilmes'
+import listaFilmes, { infosFilme } from '../../components/Models/listaFilmes'
 import { styles } from './styles'
 
 
@@ -13,14 +13,27 @@ export default function Pesquisa() {
   const listar = async () => {
     const response: any = await movieService.getFilmesPorNome(nome);
     setMovies(response.data.results);
+
+  }
+  const apagar = async () => {
+    setMovies([]);
   }
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} onChangeText={setNome} placeholder='Digite um nome' />
-      <TouchableOpacity style={styles.botao} onPress={listar}>
-        <Text style={styles.botaoTexto}>Pesquisar</Text>
-      </TouchableOpacity>
+      <TextInput style={styles.input} onChangeText={setNome} placeholder='Nome do filme' />
+
+      <View style={styles.botoes}>
+
+        <TouchableOpacity style={styles.botao1} onPress={listar}>
+          <Text style={styles.botaoTexto}>Pesquisar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botao2} onPress={apagar}>
+          <Text style={styles.botaoTexto}>Apagar</Text>
+        </TouchableOpacity>
+
+      </View>
 
 
       <FlatList
@@ -39,7 +52,7 @@ export default function Pesquisa() {
               <Text>Avaliação: {item.vote_average}</Text>
 
 
-              <TouchableOpacity style={styles.botao} onPress={() => setModalIdVisivel(item.id)}>
+              <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
                 <Text style={styles.botaoTexto}>Sobre</Text>
               </TouchableOpacity>
 
@@ -53,7 +66,7 @@ export default function Pesquisa() {
                   <View style={styles.modalContent}>
                     <Text style={styles.modalText}>{item.overview}</Text>
 
-                    <TouchableOpacity style={styles.botao} onPress={() => setModalIdVisivel(null)}>
+                    <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(null)}>
                       <Text style={styles.botaoTexto}>Fechar</Text>
                     </TouchableOpacity>
 
