@@ -1,4 +1,3 @@
-
 import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
