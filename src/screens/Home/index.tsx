@@ -1,15 +1,49 @@
-import { Text,  SafeAreaView } from 'react-native'
-import React from 'react'
+import { Text, SafeAreaView,  Animated } from 'react-native'
+import React, { useEffect, useRef } from 'react'
 import { styles } from './styles'
 import Carrossel from '../../components/Carrossel';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  useFonts,
+  Montserrat_700Bold,
+} from '@expo-google-fonts/montserrat';
 
 
 export default function Home() {
+   const scaleAnimada = useRef(new Animated.Value(0.95)).current;
+
+  useEffect(() => {
+    Animated.timing(scaleAnimada, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  let [fontsLoaded] = useFonts({
+  Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) return null;
 
   return (
 
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Filmes do Momento</Text>
+      <LinearGradient
+        colors={['rgba(0,0,0,0.6)', 'transparent']}
+        style={styles.gradientOverlay}
+      />
+      <Animated.Text
+        style={[
+          styles.header,
+          {
+            transform: [{ scale: scaleAnimada }],
+            fontFamily: 'Montserrat_700Bold',
+          },
+        ]}
+      >
+        Filmes do Momento
+      </Animated.Text>
       <Carrossel />
     </SafeAreaView>
   )

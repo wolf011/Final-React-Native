@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Image, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Image, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
 import axios from "axios";
@@ -28,35 +28,29 @@ export default function Carrossel() {
   };
 
   const handleSaibaMais = (movie: any) => {
-    Alert.alert("Saiba Mais", `Mais informações sobre: ${movie.title}`);
+    Alert.alert(`Mais informações sobre: ${movie.title}`, `${movie.overview}`);
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       {movies.length > 0 && (
         <Carousel
           ref={ref}
-          width={styles.imagem.width}
+          width={Dimensions.get('window').width}
           height={styles.imagem.height}
           data={movies}
           onProgressChange={progress}
           renderItem={({ item }) => (
-            <View style={{ flex: 1 }}>
+            <TouchableOpacity
+              style={{ flex: 1 }}
+              onPress={() => handleSaibaMais(item)}>
               <Image
                 source={{ uri: IMAGE_URL + item.poster_path }}
                 style={styles.imagem}
                 resizeMode="cover"
               />
-              <View style={styles.overlay}>
-                <Text style={styles.title}>{item.title}</Text>
-                <TouchableOpacity
-                  style={styles.saibaMaisButton}
-                  onPress={() => handleSaibaMais(item)}
-                >
-                  <Text style={styles.saibaMaisText}>Saiba mais</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+
+            </TouchableOpacity>
           )}
         />
       )}
