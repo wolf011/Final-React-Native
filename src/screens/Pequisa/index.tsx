@@ -1,8 +1,9 @@
-import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import movieService from '../../components/Service/movieService'
-import listaFilmes, { infosFilme } from '../../components/Models/listaFilmes'
+import movieService from '../../Components/Service/movieService'
+import listaFilmes, { infosFilme } from '../../Components/Models/listaFilmes'
 import { styles } from './styles'
+import { AxiosResponse } from 'axios'
 
 
 export default function Pesquisa() {
@@ -11,8 +12,12 @@ export default function Pesquisa() {
   const [modalIdVisivel, setModalIdVisivel] = useState<number | null>(null);
 
   const listar = async () => {
-    const response: any = await movieService.getFilmesPorNome(nome);
-    setMovies(response.data.results);
+    const response: AxiosResponse<listaFilmes> | undefined = await movieService.getFilmesPorNome(nome);
+    if (response && response.data) {
+      response.data.results.length >= 1?setMovies(response.data.results) : Alert.alert("Filme não encontrado!", "Tente com outro nome")
+    } else {
+      setMovies([]);
+    }
 
   }
   const apagar = async () => {
@@ -27,7 +32,7 @@ export default function Pesquisa() {
 
         <TouchableOpacity style={styles.botao1} onPress={listar}>
           <Text style={styles.botaoTexto}>Pesquisar</Text>
-        </TouchableOpacity>j
+        </TouchableOpacity>
 
         <TouchableOpacity style={styles.botao2} onPress={apagar}>
           <Text style={styles.botaoTexto}>Apagar</Text>
