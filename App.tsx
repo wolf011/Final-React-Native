@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import Home from './src/screens/Home';
 import { Feather } from '@expo/vector-icons';
 import Favorites from './src/screens/Favorites';
@@ -7,10 +8,22 @@ import Login from './src/screens/Login';
 import Subscription from './src/screens/Subscription';
 import { StatusBar } from 'react-native';
 import Pesquisa from './src/screens/Pequisa';
+import SplashScreen from './src/screens/Splash';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <SplashScreen />;
+  }
+  
   return (
     <NavigationContainer>
       <StatusBar barStyle={'default'}/>
