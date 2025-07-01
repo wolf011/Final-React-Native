@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#D3D3D3',
         padding: 16,
     },
     card: {
@@ -20,15 +20,19 @@ export const styles = StyleSheet.create({
         marginBottom: 16,
     },
     poster: {
-        width: 120,
-        height: 180,
+        width: 100,
+        height: 150,
         borderRadius: 8,
         marginBottom: 8,
     },
-    title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#333',
-        textAlign: 'center',
-    },
+   
+    header: {
+        marginTop: 15,
+        fontSize: 28,
+        fontWeight: "500",
+        color: "#191970",
+        textAlign: "center",
+        marginVertical: 5,
+        textTransform: "uppercase",
+    }
 });
