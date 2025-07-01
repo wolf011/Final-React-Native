@@ -19,6 +19,16 @@ async function criarSessaoComToken(token: string) {
   }
 }
 
+async function obterConta(sessionId: string) {
+  try {
+    const response = await api.get(`/account?session_id=${sessionId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao obter dados da conta", error);
+    return null;
+  }
+}
+
 async function getFilmes() {
     try {
         return await api.get(`/discover/movie`)
@@ -46,4 +56,4 @@ async function getFilmesDoMomento() {
     }
 }
 
-export default { getFilmes, getFilmesDoMomento, getFilmesPorNome, getToken, criarSessaoComToken };
+export default { getFilmes, getFilmesDoMomento, getFilmesPorNome, getToken, criarSessaoComToken, obterConta };
