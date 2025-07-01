@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#D3D3D3',
-        padding: 16,
+        backgroundColor: '#00008B',
+        paddingTop: 16,
     },
     card: {
         backgroundColor: 'lightblue',
@@ -25,14 +25,36 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         marginBottom: 8,
     },
-   
+
     header: {
-        marginTop: 15,
-        fontSize: 28,
-        fontWeight: "500",
-        color: "#191970",
-        textAlign: "center",
-        marginVertical: 5,
-        textTransform: "uppercase",
-    }
+        fontSize: 35,
+        fontWeight: '500',
+        color: '#fff',
+        zIndex: 2,
+        textAlign: "center"
+    },
+    headerContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        paddingTop: 40,
+        paddingHorizontal: 16,
+        zIndex: 10,
+    },
+
+    gradientOverlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 100, // altura do degradê (ajustável)
+        zIndex: 1,
+    },
+    texto: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#FFF",
+    textTransform: "uppercase",
+  },
 });
