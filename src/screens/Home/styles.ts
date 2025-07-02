@@ -48,13 +48,13 @@ export const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
-        height: 100, // altura do degradê (ajustável)
+        height: 100,
         zIndex: 1,
     },
     texto: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "#FFF",
-    textTransform: "uppercase",
-  },
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#FFF",
+        textTransform: "uppercase",
+    },
 });
