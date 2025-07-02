@@ -1,7 +1,6 @@
 import { View, Text, Alert, TextInput, TouchableOpacity,Image } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles'
-import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -11,7 +10,6 @@ export default function Subscription() {
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
-  const navigation = useNavigation()
 
 
   const handleCadastro = async () => {

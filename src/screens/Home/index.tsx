@@ -1,12 +1,12 @@
 import { Text, SafeAreaView,  Animated } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { styles } from './styles'
-import Carrossel from '../../components/Carrossel';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
   useFonts,
   Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
+import Carrossel from '../../Components/Carrossel';
 
 
 export default function Home() {

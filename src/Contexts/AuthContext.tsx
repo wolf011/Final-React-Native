@@ -1,43 +1,61 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { obterSessao, removerSessao, salvarSessao } from '../Components/Storage/auth';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface Usuario {
+  nome: string;
+  email: string;
+  senha: string;
+}
 
 interface AuthContextProps {
-    isAuthenticated: boolean;
-    sessionId: string | null;
-    login: (sessionId: string) => Promise<void>;
-    logout: () => void;
+  user: Usuario | null;
+  isAuthenticated: boolean;
+  login: (email: string, senha: string) => Promise<boolean>;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
-export default function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [sessionId, setSessionId] = useState<string | null>(null);
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<Usuario | null>(null);
 
-    useEffect(() => {
-        const carregarSessao = async () => {
-            const sessao = await obterSessao();
-            if (sessao) setSessionId(sessao);
-        };
-        carregarSessao();
-    }, []);
+  useEffect(() => {
+    carregarUsuario();
+  }, []);
 
-    const login = async (novaSessao: string) => {
-        await salvarSessao(novaSessao);
-        setSessionId(novaSessao);
-    };
+  const carregarUsuario = async () => {
+    const userJson = await AsyncStorage.getItem('usuario_logado');
+    if (userJson) {
+      setUser(JSON.parse(userJson));
+    }
+  };
 
-    const logout = async () => {
-        await removerSessao();
-        setSessionId(null);
-    };
+  const login = async (email: string, senha: string) => {
+    const usersJson = await AsyncStorage.getItem('usuarios');
+    const usuarios: Usuario[] = usersJson ? JSON.parse(usersJson) : [];
 
-    return (
-        <AuthContext.Provider value={{ isAuthenticated: !!sessionId, sessionId, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+    const encontrado = usuarios.find(u => u.email === email && u.senha === senha);
+    if (encontrado) {
+      await AsyncStorage.setItem('usuario_logado', JSON.stringify(encontrado));
+      setUser(encontrado);
+      return true;
+    }
+
+    return false;
+  };
+
+  const logout = async () => {
+    await AsyncStorage.removeItem('usuario_logado');
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
 
 export function useAuth() {
-    return useContext(AuthContext);
+  return useContext(AuthContext);
 }
