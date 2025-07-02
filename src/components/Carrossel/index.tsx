@@ -4,8 +4,8 @@ import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
 import axios, { AxiosResponse } from "axios";
 import { styles } from "./styles";
-import movieService from "../Service/movieService";
-import { listaFilmes } from "../Models/listaFilmes";
+import movieService from '../../components/Service/movieService';
+import { listaFilmes } from "../../components/Models/listaFilmes";
 
 
 export default function Carrossel() {
