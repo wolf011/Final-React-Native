@@ -2,7 +2,7 @@ import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal, Alert 
 
 import React, { useState } from 'react'
 import movieService from '../../Components/Service/movieService'
-import listaFilmes, { infosFilme } from '../../Components/Models/listaFilmes'
+import { infosFilme, listaFilmes } from '../../Components/Models/listaFilmes'
 import { styles } from './styles'
 import { AxiosResponse } from 'axios'
 import { adicionarFavorito } from '../../Components/Service/favoritosService'

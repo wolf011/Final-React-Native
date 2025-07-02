@@ -3,7 +3,7 @@ import api from "../Api/api";
 
 async function getFilmesPorNome(nome: string) {
   try {
-    return await api.get(`/search/movie?query=${nome}&language=pt-BR`)
+    return await api.get(`/search/movie?query=${nome}`)
 
   } catch (error) {
     console.error(error);

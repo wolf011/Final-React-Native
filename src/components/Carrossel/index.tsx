@@ -2,11 +2,11 @@ import * as React from "react";
 import { View, Image, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { styles } from "./styles";
+import movieService from "../Service/movieService";
+import { listaFilmes } from "../Models/listaFilmes";
 
-const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
-const API_KEY = "df7b1eb1b20938e535742adbdcb93950";
 
 export default function Carrossel() {
   const ref = React.useRef<ICarouselInstance>(null);
@@ -14,10 +14,15 @@ export default function Carrossel() {
   const [movies, setMovies] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    axios
-      .get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=pt-BR`)
-      .then((res) => setMovies(res.data.results.slice(0, 6)))
-      .catch((err) => console.error(err));
+    const carregarFilmes = async () => {
+      const response: AxiosResponse<listaFilmes> | undefined = await movieService.getFilmesDoMomento();
+      if (response && response.data) {
+        response.data.results.length >= 1 ? setMovies(response.data.results.slice(0, 6)) : Alert.alert("Filme não encontrado!", "Tente com outro nome")
+      } else {
+        setMovies([]);
+      }
+    };
+    carregarFilmes();
   }, []);
 
   const onPressPagination = (index: number) => {
@@ -45,7 +50,7 @@ export default function Carrossel() {
               style={{ flex: 1 }}
               onPress={() => handleSaibaMais(item)}>
               <Image
-                source={{ uri: IMAGE_URL + item.poster_path }}
+                source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}`}}
                 style={styles.imagem}
                 resizeMode="cover"
               />

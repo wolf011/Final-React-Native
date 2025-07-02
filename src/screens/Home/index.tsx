@@ -1,4 +1,4 @@
-import { Text, SafeAreaView,  Animated } from 'react-native'
+import { Text, SafeAreaView, Animated } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { styles } from './styles'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,7 +10,7 @@ import Carrossel from '../../Components/Carrossel';
 
 
 export default function Home() {
-   const scaleAnimada = useRef(new Animated.Value(0.95)).current;
+  const scaleAnimada = useRef(new Animated.Value(0.95)).current;
 
   useEffect(() => {
     Animated.timing(scaleAnimada, {
@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   let [fontsLoaded] = useFonts({
-  Montserrat_700Bold,
+    Montserrat_700Bold,
   });
 
   if (!fontsLoaded) return null;

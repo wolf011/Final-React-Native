@@ -4,8 +4,8 @@ import { styles } from './styles';
 import { useAuth } from '../../Contexts/AuthContext';
 import movieService from '../../Components/Service/movieService';
 import { listarFavoritos, removerFavorito } from '../../Components/Service/favoritosService';
-import { infosFilme } from '../../Components/Models/listaFilmes';
 import { useFocusEffect } from '@react-navigation/native';
+import { infosFilme } from '../../Components/Models/listaFilmes';
 
 export default function Favoritos() {
   const { user } = useAuth();
