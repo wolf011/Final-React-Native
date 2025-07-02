@@ -9,7 +9,7 @@ import { infosFilme } from '../../Components/Models/listaFilmes';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient'; 
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   useFonts,
   Montserrat_700Bold,
@@ -59,9 +59,9 @@ export default function Favoritos() {
 
   let [fontsLoaded] = useFonts({
     Montserrat_700Bold,
-    });
-  
-    if (!fontsLoaded) return null;
+  });
+
+  if (!fontsLoaded) return null;
 
   return (
     <View style={styles.container}>
@@ -70,7 +70,7 @@ export default function Favoritos() {
         fontFamily: 'Montserrat_700Bold',
       },
       ]}
-        >Meus Favoritos</Text>
+      >Meus Favoritos</Text>
 
       <FlatList
         data={filmes}
@@ -81,49 +81,59 @@ export default function Favoritos() {
               source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }}
               style={styles.poster}
             />
+            <View style={styles.conteudo}>
 
-            <View style={styles.botoes}>
-              <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
-                <Text style={styles.botaoTexto}>Sobre</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.botao2}
-                onPress={() => handleRemover(item.id)}
+              <Text
+                style={styles.tituloFilme}
+                numberOfLines={2}
+                adjustsFontSizeToFit
+                minimumFontScale={0.85}
+                ellipsizeMode="tail"
               >
-                <Text style={styles.botaoTexto}>Remover</Text>
-              </TouchableOpacity>
-            </View>
+                {item.title}
+              </Text>
 
-            <Text style={styles.titulo}>{item.title}</Text>
 
-            <Modal
-              visible={modalIdVisivel === item.id}
-              transparent={true}
-              animationType='fade'
-            >
-              <View style={styles.modalBackground}>
-                <View style={styles.modalContent}>
-                  <Text style={styles.modalText}>{item.overview}</Text>
+              <View style={styles.botoesContainer}>
+                <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
+                  <Text style={styles.botaoTexto}>Sobre</Text>
+                </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.botao2} onPress={() => setModalIdVisivel(null)}>
-                    <Text style={styles.botaoTexto}>Fechar</Text>
-                  </TouchableOpacity>
-
-                </View>
+                <TouchableOpacity style={styles.botao2} onPress={() => handleRemover(item.id)}>
+                  <Text style={styles.botaoTexto}>Remover</Text>
+                </TouchableOpacity>
               </View>
 
-            </Modal>
 
+
+
+              <Modal
+                visible={modalIdVisivel === item.id}
+                transparent={true}
+                animationType='fade'
+              >
+                <View style={styles.modalBackground}>
+                  <View style={styles.modalContent}>
+                    <Text style={styles.modalText}>{item.overview}</Text>
+
+                    <TouchableOpacity style={styles.botao2} onPress={() => setModalIdVisivel(null)}>
+                      <Text style={styles.botaoTexto}>Fechar</Text>
+                    </TouchableOpacity>
+
+                  </View>
+                </View>
+
+              </Modal>
+            </View>
           </BlurView>
         )}
       />
       <LinearGradient
-              colors={['rgba(0,0,0,0.6)', 'transparent']}
-              start={{ x: 0.5, y: 1 }}         // Começa embaixo
-              end={{ x: 0.5, y: 0 }}
-              style={styles.gradientOverlay}
-            />
+        colors={['rgba(0,0,0,0.6)', 'transparent']}
+        start={{ x: 0.5, y: 1 }}         // Começa embaixo
+        end={{ x: 0.5, y: 0 }}
+        style={styles.gradientOverlay}
+      />
     </View>
   );
 }

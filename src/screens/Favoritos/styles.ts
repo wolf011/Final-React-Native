@@ -15,18 +15,20 @@ export const styles = StyleSheet.create({
     },
     card: {
         flexDirection: "row",
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     padding: 16,
     borderRadius: 12,
     justifyContent: 'space-between',
     marginBottom: 16,
-        overflow: 'hidden',
-    
+    overflow: 'hidden',
+        alignItems: 'flex-start',
+
     },
     poster: {
         width: 120,
-        height: 180,
-        borderRadius: 8
+    height: 180,
+    borderRadius: 8,
+    marginBottom: 8,
     },
     modalBackground: {
         flex: 1,
@@ -53,22 +55,15 @@ export const styles = StyleSheet.create({
         paddingBottom: "10%"
     },
     botao1: {
-        backgroundColor: '#4CAF50',
-        paddingVertical: 12,
-        paddingHorizontal: 30,
-        borderRadius: 8,
-        marginBottom: 20,
-        alignItems: "center",
-        marginRight: 70,
-        alignSelf: 'center'
+        backgroundColor: '#007bff',
+        padding: 6,
+        borderRadius: 6,
+        marginRight: 10,
     },
     botao2: {
-        backgroundColor: 'rgb(255, 0, 0)',
-        paddingVertical: 12,
-        paddingHorizontal: 30,
-        borderRadius: 8,
-        marginBottom: 20,
-        alignItems: "center"
+        backgroundColor: '#dc3545',
+        padding: 6,
+        borderRadius: 6,
     },
     botoes: {
         flexDirection: "row",
@@ -80,23 +75,34 @@ export const styles = StyleSheet.create({
     },
     botaoTexto: {
         color: '#fff',
-        fontWeight: 'bold'
+        fontSize: 14,
+        fontWeight: '600',
     },
 
 
     gradientOverlay: {
         position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 100,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 100,
     },
     conteudo: {
-    alignItems: "center",
-    alignContent: "center"
+        flex: 1,
+        marginLeft: 10,
+        justifyContent: 'space-between',
     },
     tituloFilme: {
-        
-    }
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+        marginBottom: 8,
+    },
+    botoesContainer: {
+        flexDirection: 'row',
+        gap: 10,
+    },
+
+
 
 });

@@ -22,8 +22,10 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
   conteudo: {
-    alignItems: "center",
-    alignContent: "center"
+    flex: 1,
+        marginLeft: 10,
+    justifyContent: 'space-between',
+        maxWidth: '70%', 
   },
   title: {
     color: '#fff',
@@ -63,6 +65,18 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 20,
     alignItems: "center"
+  },
+  botaoSobre: {
+        backgroundColor: '#007bff',
+        padding: 6,
+        borderRadius: 6,
+        marginRight: 10,
+  },
+  botaoFavorito: {
+        backgroundColor: '#dc3545',
+        padding: 6,
+    borderRadius: 6,
+        
   },
   botoes: {
     flexDirection: "row",
@@ -107,12 +121,18 @@ export const styles = StyleSheet.create({
     right: 0,
     height: 100,
   },
-  botaoSobre: {
-    marginTop: 12,
-    backgroundColor: '#3366FF',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    alignSelf: 'center',
-  }
+  
+
+  tituloFilme: {
+    fontSize: 18,
+  fontWeight: 'bold',
+  color: '#000',
+  width: '100%',
+    flexShrink: 1,
+  overflow: 'hidden'
+  },
+  botoesContainer: {
+        flexDirection: 'row',
+        gap: 10,
+    },
 });

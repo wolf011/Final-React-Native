@@ -35,9 +35,9 @@ export default function Pesquisa() {
 
   return (
     <View style={styles.container}>
-      
+
       <TextInput value={nome ?? ""} style={styles.input} onChangeText={setNome} placeholder='Nome do filme' placeholderTextColor={"white"} />
-    
+
 
       <View style={styles.botoes}>
 
@@ -48,10 +48,10 @@ export default function Pesquisa() {
         <TouchableOpacity style={styles.botao2} onPress={apagar}>
           <Text style={styles.botaoTexto}>Apagar</Text>
         </TouchableOpacity>
-        
+
       </View>
 
-      
+
 
       <FlatList
         data={movies}
@@ -63,29 +63,38 @@ export default function Pesquisa() {
               style={styles.poster}
             />
             <View style={styles.conteudo}>
-              
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.descricao}>Lançamento: {item.release_date}</Text>
-                <Text style={styles.descricao}>Avaliação: {item.vote_average}</Text>
 
-
-              <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
-                <Text style={styles.botaoTexto}>Sobre</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.botao1}
-                onPress={async () => {
-                  if (user?.email) {
-                    await adicionarFavorito(user.email, item.id);
-                    Alert.alert('Adicionado aos favoritos!');
-                  } else {
-                    Alert.alert('Erro', 'Usuário não autenticado.');
-                  }
-                }}
+              <Text
+                style={styles.tituloFilme}
+                numberOfLines={2}
+                adjustsFontSizeToFit
+                minimumFontScale={0.85}
+                ellipsizeMode="tail"
               >
-                <Text style={styles.botaoTexto}>Favoritar</Text>
-              </TouchableOpacity>
+                {item.title}
+              </Text>
+              <Text style={styles.descricao}>Lançamento: {item.release_date}</Text>
+              <Text style={styles.descricao}>Avaliação: {item.vote_average}</Text>
+
+              <View style={styles.botoesContainer}>
+                <TouchableOpacity style={styles.botaoSobre} onPress={() => setModalIdVisivel(item.id)}>
+                  <Text style={styles.botaoTexto}>Sobre</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.botaoFavorito}
+                  onPress={async () => {
+                    if (user?.email) {
+                      await adicionarFavorito(user.email, item.id);
+                      Alert.alert('Adicionado aos favoritos!');
+                    } else {
+                      Alert.alert('Erro', 'Usuário não autenticado.');
+                    }
+                  }}
+                >
+                  <Text style={styles.botaoTexto}>Favoritar</Text>
+                </TouchableOpacity>
+              </View>
 
 
               <Modal
@@ -106,13 +115,13 @@ export default function Pesquisa() {
 
               </Modal>
             </View>
-            
+
           </BlurView>
         )}
       />
       <LinearGradient
         colors={['rgba(0,0,0,0.6)', 'transparent']}
-        start={{ x: 0.5, y: 1 }}         
+        start={{ x: 0.5, y: 1 }}
         end={{ x: 0.5, y: 0 }}
         style={styles.gradientOverlay}
       />
