@@ -3,21 +3,17 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#00008B',
     padding: 16,
   },
   card: {
     flexDirection: "row",
-    backgroundColor: 'lightblue',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     padding: 16,
     borderRadius: 12,
     justifyContent: 'space-between',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation: 3,
     marginBottom: 16,
+    overflow: 'hidden',
   },
   poster: {
     width: 120,
@@ -27,23 +23,28 @@ export const styles = StyleSheet.create({
   },
   conteudo: {
     alignItems: "center",
+    alignContent: "center"
   },
   title: {
-    fontSize: 16,
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
-    textAlign: 'left',
-    flexWrap: "wrap",
-    flex: 1,
-    flexShrink: 1,
+    marginBottom: 8,
+  },
+  descricao: {
+    color: '#fff',
+    padding:10
   },
   input: {
+    color: 'white',
     width: '100%',
+    height: 50,
     borderWidth: 1,
-    borderColor: '#aaa',
-    borderRadius: 8,
+    borderColor: 'white',
+    borderRadius: 10,
     padding: 10,
     marginBottom: 10,
+    marginTop: 30
   },
   botao1: {
     backgroundColor: '#4CAF50',
@@ -51,7 +52,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 8,
     marginBottom: 20,
-    alignItems: "center"
+    alignItems: "center",
+    marginRight: 70,
+    alignSelf: 'center'
   },
   botao2: {
     backgroundColor: 'rgb(255, 0, 0)',
@@ -64,7 +67,10 @@ export const styles = StyleSheet.create({
   botoes: {
     flexDirection: "row",
     width: "100%",
-    justifyContent: "space-between"
+    justifyContent: "center",
+    marginTop: 30,
+    
+    
   },
   botaoTexto: {
     color: '#fff',
@@ -93,5 +99,20 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: 'center',
     paddingBottom: "10%"
+  },
+  gradientOverlay: {
+        position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+  },
+  botaoSobre: {
+    marginTop: 12,
+    backgroundColor: '#3366FF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignSelf: 'center',
   }
 });
