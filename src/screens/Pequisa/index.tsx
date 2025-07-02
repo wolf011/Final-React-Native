@@ -1,9 +1,12 @@
 import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal, Alert } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import movieService from '../../Components/Service/movieService'
 import listaFilmes, { infosFilme } from '../../Components/Models/listaFilmes'
 import { styles } from './styles'
 import { AxiosResponse } from 'axios'
+import { adicionarFavorito } from '../../Components/Service/favoritosService'
+import { useAuth } from '../../Contexts/AuthContext';
+
 
 
 export default function Pesquisa() {
@@ -11,10 +14,12 @@ export default function Pesquisa() {
   const [nome, setNome] = useState<string>("");
   const [modalIdVisivel, setModalIdVisivel] = useState<number | null>(null);
 
+  const { user } = useAuth();
+
   const listar = async () => {
     const response: AxiosResponse<listaFilmes> | undefined = await movieService.getFilmesPorNome(nome);
     if (response && response.data) {
-      response.data.results.length >= 1?setMovies(response.data.results) : Alert.alert("Filme não encontrado!", "Tente com outro nome")
+      response.data.results.length >= 1 ? setMovies(response.data.results) : Alert.alert("Filme não encontrado!", "Tente com outro nome")
     } else {
       setMovies([]);
     }
@@ -59,6 +64,20 @@ export default function Pesquisa() {
 
               <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
                 <Text style={styles.botaoTexto}>Sobre</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.botao1}
+                onPress={async () => {
+                  if (user?.email) {
+                    await adicionarFavorito(user.email, item.id);
+                    Alert.alert('Adicionado aos favoritos!');
+                  } else {
+                    Alert.alert('Erro', 'Usuário não autenticado.');
+                  }
+                }}
+              >
+                <Text style={styles.botaoTexto}>Favoritar</Text>
               </TouchableOpacity>
 
 
