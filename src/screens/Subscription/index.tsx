@@ -1,8 +1,10 @@
-import { View, Text, Alert, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Alert, TextInput, TouchableOpacity,Image } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 export default function Subscription() {
 
@@ -56,18 +58,24 @@ export default function Subscription() {
 
 
   return (
-    <View style={styles.container}>
-      <Text>Faça o seu cadastro:</Text>
+   <LinearGradient colors={['#a2d4ec', '#b29eff']} style={styles.container}>
+       <Text style={styles.titulo}>Faça o seu cadastro</Text>
 
-      <TextInput
-        placeholder='Nome'
-        value={nome}
-        onChangeText={setNome}
-        style={styles.input}
-      />
+       <Image
+   source={require('./Perfil.webp')}
+  style={styles.avatar}
+/>
 
+     <TextInput
+       placeholder='Digite o seu nome'
+       placeholderTextColor="#1C1C1C" 
+       value={nome}
+       onChangeText={setNome}
+       style={styles.input}
+       />
       <TextInput
-        placeholder='E-mail'
+        placeholder='Digite seu e-mail'
+           placeholderTextColor="#1C1C1C" 
         value={email}
         onChangeText={setEmail}
         style={styles.input}
@@ -76,19 +84,18 @@ export default function Subscription() {
       />
 
       <TextInput
-        placeholder='Senha'
+        placeholder='Digite sua senha'
+           placeholderTextColor="#1C1C1C" 
         value={senha}
         onChangeText={setSenha}
         style={styles.input}
         secureTextEntry
       />
 
-      <TouchableOpacity onPress={handleCadastro} style={styles.botao}>
-        <Text style={styles.textoBotao}>Cadastrar</Text>
-      </TouchableOpacity>
+<TouchableOpacity onPress={handleCadastro} style={styles.botao}>
+  <Text style={styles.textoBotao}>Cadastrar</Text>
+</TouchableOpacity>
 
-    </View>
-
-
+ </LinearGradient>
   )
 }

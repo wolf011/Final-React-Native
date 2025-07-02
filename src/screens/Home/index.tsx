@@ -1,68 +1,50 @@
-import { View, Text, FlatList, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Text, SafeAreaView,  Animated } from 'react-native'
+import React, { useEffect, useRef } from 'react'
 import { styles } from './styles'
-import movieService from '../../components/Service/movieService';
-import { infosFilme } from '../../components/Models/listaFilmes';
+import Carrossel from '../../components/Carrossel';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  useFonts,
+  Montserrat_700Bold,
+} from '@expo-google-fonts/montserrat';
 
 
 export default function Home() {
-  const [filmesMomento, setFilmesMomento] = useState<infosFilme[]>([])
-
-  const listarLancamentos = async () => {
-    const response: any = await movieService.getFilmesDoMomento();
-    setFilmesMomento(response.data.results)
-    console.log(filmesMomento);
-
-  }
+   const scaleAnimada = useRef(new Animated.Value(0.95)).current;
 
   useEffect(() => {
-    listarLancamentos()
-  }, [])
+    Animated.timing(scaleAnimada, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
 
+  let [fontsLoaded] = useFonts({
+  Montserrat_700Bold,
+  });
+
+  if (!fontsLoaded) return null;
 
   return (
 
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <FlatList
-        data={filmesMomento}
-        horizontal
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              backgroundColor: '#f2f2f2',
-              padding: 16,
-              width: 200,
-              height: 100,
-              borderRadius: 12,
-              justifyContent: 'center',
-              alignItems: 'center',
-              shadowColor: 'rgba(255, 255, 255, 1)',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.2,
-              shadowRadius: 3,
-              elevation: 3,
-            }}
-          >
-            <Image
-              source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }}
-              style={styles.poster}
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: '#333',
-                textAlign: 'center',
-              }}
-
-            >
-              {item.title}
-            </Text>
-          </View>
-        )}
+    <SafeAreaView style={styles.container}>
+      <LinearGradient
+        colors={['rgba(0,0,0,0.6)', 'transparent']}
+        style={styles.gradientOverlay}
       />
-    </View>
+      <Animated.Text
+        style={[
+          styles.header,
+          {
+            transform: [{ scale: scaleAnimada }],
+            fontFamily: 'Montserrat_700Bold',
+          },
+        ]}
+      >
+        Filmes do Momento
+      </Animated.Text>
+      <Carrossel />
+    </SafeAreaView>
   )
 }

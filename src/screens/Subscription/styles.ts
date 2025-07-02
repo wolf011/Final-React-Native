@@ -5,29 +5,43 @@ export const styles = StyleSheet.create ({
     flex: 1,
     padding: 24,
     justifyContent: 'center',
-    backgroundColor: '#fff',
   },
   titulo: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 24,
+    marginTop: 0 ,
+     fontSize: 24,
+    marginBottom: 80,
     textAlign: 'center',
   },
+
   input: {
+    fontSize: 17,
+    backgroundColor:'#fff',
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 12,
+    borderColor: '#111',
+    padding: 15,
     marginBottom: 16,
     borderRadius: 8,
   },
   botao: {
+    
+    marginTop :50,
     backgroundColor: '#007bff',
-    padding: 14,
-    borderRadius: 8,
+    padding: 17,
+    borderRadius: 20,
   },
   textoBotao: {
+    borderColor: '#111',
+   fontFamily: 'Poppins-Regular',  
+    fontSize: 16,
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
   },
+  avatar: {
+  width: 100,
+  height: 100,
+  borderRadius: 50, 
+  marginBottom: 30,
+  alignSelf: 'center',
+}
 });
