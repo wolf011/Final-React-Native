@@ -6,7 +6,7 @@ import {
   useFonts,
   Montserrat_700Bold,
 } from '@expo-google-fonts/montserrat';
-import Carrossel from '../../components/Carrossel';
+import Carrossel from '../../Components/Carrossel';
 
 
 export default function Home() {

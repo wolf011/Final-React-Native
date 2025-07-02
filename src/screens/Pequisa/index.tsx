@@ -1,10 +1,10 @@
 import { View, Text, FlatList, Image, TextInput, TouchableOpacity, Modal, Alert } from 'react-native';
 import React, { useState } from 'react';
-import movieService from '../../components/Service/movieService';
-import { infosFilme, listaFilmes } from '../../components/Models/listaFilmes';
+import movieService from '../../Components/Service/movieService';
+import { infosFilme, listaFilmes } from '../../Components/Models/listaFilmes';
 import { styles } from './styles';
 import { AxiosResponse } from 'axios';
-import { adicionarFavorito } from '../../components/Service/favoritosService';
+import { adicionarFavorito } from '../../Components/Service/favoritosService';
 import { useAuth } from '../../Contexts/AuthContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur'

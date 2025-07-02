@@ -2,10 +2,10 @@ import * as React from "react";
 import { View, Image, Text, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { styles } from "./styles";
-import movieService from '../../components/Service/movieService';
-import { listaFilmes } from "../../components/Models/listaFilmes";
+import movieService from '../../Components/Service/movieService';
+import { listaFilmes } from "../../Components/Models/listaFilmes";
 
 
 export default function Carrossel() {
