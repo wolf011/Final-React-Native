@@ -19,15 +19,58 @@ export const styles = StyleSheet.create({
         height: 180,
         borderRadius: 8
     },
-    botaoRemover: {
-        backgroundColor: 'red',
-        padding: 8,
-        borderRadius: 6,
-        marginTop: 8,
-        alignItems: 'center'
+    modalBackground: {
+        flex: 1,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    textoBotao: {
-        color: 'white',
+    modalContent: {
+        backgroundColor: "#fff",
+        padding: 24,
+        borderRadius: 8,
+        alignItems: "center",
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+    },
+    modalText: {
+        marginBottom: 16,
+        fontSize: 18,
+        fontWeight: "500",
+        textAlign: 'center',
+        paddingBottom: "10%"
+    },
+    botao1: {
+        backgroundColor: '#4CAF50',
+        paddingVertical: 12,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+        marginBottom: 20,
+        alignItems: "center",
+        marginRight: 70,
+        alignSelf: 'center'
+    },
+    botao2: {
+        backgroundColor: 'rgb(255, 0, 0)',
+        paddingVertical: 12,
+        paddingHorizontal: 30,
+        borderRadius: 8,
+        marginBottom: 20,
+        alignItems: "center"
+    },
+    botoes: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "center",
+        marginTop: 30,
+
+
+    },
+    botaoTexto: {
+        color: '#fff',
         fontWeight: 'bold'
-    }
+    },
 });

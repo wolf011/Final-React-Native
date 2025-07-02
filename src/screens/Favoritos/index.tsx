@@ -1,13 +1,17 @@
-import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { View, Text, Image, FlatList, TouchableOpacity, Modal } from 'react-native';
+import React, { useCallback, useState } from 'react';
 import { styles } from './styles';
 import { useAuth } from '../../Contexts/AuthContext';
 import movieService from '../../Components/Service/movieService';
 import { listarFavoritos, removerFavorito } from '../../Components/Service/favoritosService';
+import { infosFilme } from '../../Components/Models/listaFilmes';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Favoritos() {
   const { user } = useAuth();
-  const [filmes, setFilmes] = useState<any[]>([]);
+  const [filmes, setFilmes] = useState<infosFilme[] | []>([]);
+  const [modalIdVisivel, setModalIdVisivel] = useState<number | null>(null);
+
 
 
   const carregarFavoritos = async () => {
@@ -25,15 +29,17 @@ export default function Favoritos() {
     setFilmes(filtrados);
   };
 
-  useEffect(() => {
-    carregarFavoritos();
-
-    const intervalo = setInterval(() => {
+  useFocusEffect(
+    useCallback(() => {
       carregarFavoritos();
-    }, 60000);
 
-    return () => clearInterval(intervalo);
-  }, [user]);
+      const intervalo = setInterval(() => {
+        carregarFavoritos();
+      }, 60000);
+
+      return () => clearInterval(intervalo);
+    }, [user])
+  );
 
   const handleRemover = async (filmeId: number) => {
     if (!user?.email) return;
@@ -55,14 +61,40 @@ export default function Favoritos() {
               source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }}
               style={styles.poster}
             />
+
+            <View style={styles.botoes}>
+              <TouchableOpacity style={styles.botao1} onPress={() => setModalIdVisivel(item.id)}>
+                <Text style={styles.botaoTexto}>Sobre</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.botao2}
+                onPress={() => handleRemover(item.id)}
+              >
+                <Text style={styles.botaoTexto}>Remover</Text>
+              </TouchableOpacity>
+            </View>
+
             <Text style={styles.titulo}>{item.title}</Text>
 
-            <TouchableOpacity
-              style={styles.botaoRemover}
-              onPress={() => handleRemover(item.id)}
+            <Modal
+              visible={modalIdVisivel === item.id}
+              transparent={true}
+              animationType='fade'
             >
-              <Text style={styles.textoBotao}>Remover</Text>
-            </TouchableOpacity>
+              <View style={styles.modalBackground}>
+                <View style={styles.modalContent}>
+                  <Text style={styles.modalText}>{item.overview}</Text>
+
+                  <TouchableOpacity style={styles.botao2} onPress={() => setModalIdVisivel(null)}>
+                    <Text style={styles.botaoTexto}>Fechar</Text>
+                  </TouchableOpacity>
+
+                </View>
+              </View>
+
+            </Modal>
+
           </View>
         )}
       />
