@@ -114,7 +114,7 @@ export default function Pesquisa() {
       />
       <LinearGradient
         colors={['rgba(0,0,0,0.6)', 'transparent']}
-        start={{ x: 0.5, y: 1 }}         // Começa embaixo
+        start={{ x: 0.5, y: 1 }}         
         end={{ x: 0.5, y: 0 }}
         style={styles.gradientOverlay}
       />
