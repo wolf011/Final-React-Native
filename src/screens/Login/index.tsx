@@ -1,7 +1,9 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import React, { useState } from 'react';
 import { styles } from './styles';
 import { useAuth } from '../../Contexts/AuthContext';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,13 +20,27 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput style={styles.input} placeholder="E-mail" value={email} onChangeText={setEmail} />
-      <TextInput style={styles.input} placeholder="Senha" value={senha} onChangeText={setSenha} secureTextEntry />
+
+  
+  
+      <LinearGradient colors={['#a2d4ec', '#b29eff']} style={styles.container}>
+   
+    <Text style={styles.title}>Realize seu login</Text>
+      <Image
+       source={require('../../../assets/user.png')} style={styles.imagem} />
+     
+
+      <TextInput
+       value={email ?? ""} style={styles.input} onChangeText={setEmail} placeholder='Insira email'
+        placeholderTextColor="#1C1C1C" />
+        
+      <TextInput 
+      value={senha ?? ""} secureTextEntry style={styles.input} onChangeText={setSenha} placeholder='Insira senha' 
+       placeholderTextColor="#1C1C1C"/>
+
       <TouchableOpacity style={styles.botao} onPress={autenticar}>
         <Text style={styles.botaoTexto}>Entrar</Text>
       </TouchableOpacity>
-    </View>
-  );
+      </LinearGradient>
+  )
 }

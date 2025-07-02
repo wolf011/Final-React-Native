@@ -65,14 +65,14 @@ export default function Subscription() {
 />
 
      <TextInput
-       placeholder='Digite o seu nome'
+       placeholder='Insira o seu nome'
        placeholderTextColor="#1C1C1C" 
        value={nome}
        onChangeText={setNome}
        style={styles.input}
        />
       <TextInput
-        placeholder='Digite seu e-mail'
+        placeholder='Insira seu e-mail'
            placeholderTextColor="#1C1C1C" 
         value={email}
         onChangeText={setEmail}
@@ -82,7 +82,7 @@ export default function Subscription() {
       />
 
       <TextInput
-        placeholder='Digite sua senha'
+        placeholder='Insira sua senha'
            placeholderTextColor="#1C1C1C" 
         value={senha}
         onChangeText={setSenha}

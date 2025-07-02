@@ -2,42 +2,44 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 16
+   flex: 1,
+    padding: 24,
+    justifyContent: 'center',
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    textAlign: 'left',
-    flexWrap: "wrap",
-    flex: 1,
-    flexShrink: 1
+    marginTop: 0 ,
+     fontSize: 24,
+    marginBottom: 80,
+    textAlign: 'center',
   },
   input: {
-    width: '100%',
+       fontSize: 17,
+    backgroundColor:'#fff',
     borderWidth: 1,
-    borderColor: '#aaa',
+    borderColor: '#111',
+    padding: 15,
+    marginBottom: 16,
     borderRadius: 8,
-    padding: 10,
-    marginBottom: 10
   },
   botao: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 8,
-    marginBottom: 20,
-    alignItems: "center"
+   marginTop :50,
+    backgroundColor: '#007bff',
+    padding: 17,
+    borderRadius: 20,
   },
   botaoTexto: {
+    borderColor: '#111',
+   fontFamily: 'Poppins-Regular',  
+    fontSize: 16,
     color: '#fff',
-    fontWeight: 'bold'
+    textAlign: 'center',
+    fontWeight: 'bold',
   }, 
   imagem: {
-    width: 100, 
-    height: 100 
-
+    width: 100,
+  height: 100,
+  borderRadius: 50, 
+  marginBottom: 70,
+  alignSelf: 'center',
   }
 });
