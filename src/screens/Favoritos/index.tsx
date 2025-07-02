@@ -4,8 +4,17 @@ import { styles } from './styles';
 import { useAuth } from '../../Contexts/AuthContext';
 import movieService from '../../Components/Service/movieService';
 import { listarFavoritos, removerFavorito } from '../../Components/Service/favoritosService';
+
 import { infosFilme } from '../../Components/Models/listaFilmes';
 import { useFocusEffect } from '@react-navigation/native';
+
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient'; 
+import {
+  useFonts,
+  Montserrat_700Bold,
+} from '@expo-google-fonts/montserrat';
+
 
 export default function Favoritos() {
   const { user } = useAuth();
@@ -48,15 +57,26 @@ export default function Favoritos() {
     await carregarFavoritos();
   };
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_700Bold,
+    });
+  
+    if (!fontsLoaded) return null;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Meus Favoritos</Text>
+      <Text style={[styles.titulo,
+      {
+        fontFamily: 'Montserrat_700Bold',
+      },
+      ]}
+        >Meus Favoritos</Text>
 
       <FlatList
         data={filmes}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <View style={styles.card}>
+          <BlurView intensity={50} tint="light" style={styles.card}>
             <Image
               source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }}
               style={styles.poster}
@@ -95,9 +115,15 @@ export default function Favoritos() {
 
             </Modal>
 
-          </View>
+          </BlurView>
         )}
       />
+      <LinearGradient
+              colors={['rgba(0,0,0,0.6)', 'transparent']}
+              start={{ x: 0.5, y: 1 }}         // Começa embaixo
+              end={{ x: 0.5, y: 0 }}
+              style={styles.gradientOverlay}
+            />
     </View>
   );
 }

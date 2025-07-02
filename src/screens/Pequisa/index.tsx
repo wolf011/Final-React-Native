@@ -7,8 +7,6 @@ import { styles } from './styles'
 import { AxiosResponse } from 'axios'
 import { adicionarFavorito } from '../../Components/Service/favoritosService'
 import { useAuth } from '../../Contexts/AuthContext';
-
-
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur'
 

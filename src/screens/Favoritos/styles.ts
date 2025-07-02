@@ -3,16 +3,25 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         padding: 16,
-        backgroundColor: '#fff',
+        backgroundColor: '#00008B',
         flex: 1
     },
     titulo: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 12
+        fontSize: 30,
+        marginBottom: 12,
+        fontWeight: '500',
+        color: '#fff',
+        zIndex: 2,
     },
     card: {
-        marginBottom: 20
+        flexDirection: "row",
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 16,
+    borderRadius: 12,
+    justifyContent: 'space-between',
+    marginBottom: 16,
+        overflow: 'hidden',
+    
     },
     poster: {
         width: 120,
@@ -73,4 +82,21 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold'
     },
+
+
+    gradientOverlay: {
+        position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 100,
+    },
+    conteudo: {
+    alignItems: "center",
+    alignContent: "center"
+    },
+    tituloFilme: {
+        
+    }
+
 });
