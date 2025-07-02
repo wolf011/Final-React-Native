@@ -5,8 +5,8 @@ import { useAuth } from '../../Contexts/AuthContext';
 import movieService from '../../Components/Service/movieService';
 import { listarFavoritos, removerFavorito } from '../../Components/Service/favoritosService';
 
-import { infosFilme } from '../../Components/Models/listaFilmes';
 import { useFocusEffect } from '@react-navigation/native';
+import { infosFilme } from '../../Components/Models/listaFilmes';
 
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';

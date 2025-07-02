@@ -1,11 +1,11 @@
-export default interface listaFilmes {
+interface listaFilmes {
   page: number;
   results: infosFilme[];
   total_pages: number;
   total_results: number;
 }
 
-export interface infosFilme {
+interface infosFilme {
   id: number;
   original_language: string;
   original_title: string;
@@ -16,3 +16,5 @@ export interface infosFilme {
   title: string;
   vote_average: number;
 }
+
+export type {listaFilmes, infosFilme};

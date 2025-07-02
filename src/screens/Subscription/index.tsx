@@ -1,4 +1,4 @@
-import { View, Text, Alert, TextInput, TouchableOpacity,Image } from 'react-native'
+import { Text, Alert, TextInput, TouchableOpacity,Image } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -60,7 +60,7 @@ export default function Subscription() {
        <Text style={styles.titulo}>Faça o seu cadastro</Text>
 
        <Image
-   source={require('./Perfil.webp')}
+   source={require('../../../assets/user.png')}
   style={styles.avatar}
 />
 
