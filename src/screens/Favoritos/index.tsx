@@ -2,12 +2,10 @@ import { View, Text, Image, FlatList, TouchableOpacity, Modal } from 'react-nati
 import React, { useCallback, useState } from 'react';
 import { styles } from './styles';
 import { useAuth } from '../../Contexts/AuthContext';
-import movieService from '../../Components/Service/movieService';
-import { listarFavoritos, removerFavorito } from '../../Components/Service/favoritosService';
-
+import movieService from '../../components/Service/movieService';
+import { listarFavoritos, removerFavorito } from '../../components/Service/favoritosService';
 import { useFocusEffect } from '@react-navigation/native';
-import { infosFilme } from '../../Components/Models/listaFilmes';
-
+import { infosFilme } from '../../components/Models/listaFilmes';
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
